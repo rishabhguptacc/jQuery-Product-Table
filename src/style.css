@@ -2,6 +2,7 @@ body{
 	font-family: Arial;
 	font-size: 80%;
 }
+ 
 
 #wrapper{
 	width: 80%;
@@ -46,11 +47,19 @@ body{
 #notification .success{
 	border: 1px solid green;
 	background: #7ED47E;
+	display: none;
 }
 
 #notification .error{
 	border: 1px solid red;
 	background: #FF5733;
+	display: none;
+}
+
+#notification .warning{
+	border: 1px solid rgb(255, 204, 0);
+	background: #fffa6d;
+	display: none;
 }
 
 #product_list .delete{

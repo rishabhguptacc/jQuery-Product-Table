@@ -3,6 +3,7 @@
 <head>
 	<title>jQuery</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
 	<div id="wrapper">
@@ -30,9 +31,10 @@
 		<div id="notification">
 			<div class="success">Product Added Successfully.<a href="#" class="close">X</a></div>
 			<div class="error">There is some problem.<a href="#" class="close">X</a></div>
+			<div class="warning">Product Id already exists.<a href="#" class="close">X</a></div>
 		</div>
 		<div id="product_list">
-			<table>
+			<!-- <table id="tab">
 				<tr>
 					<th>SKU</th>
 					<th>Name</th>
@@ -40,22 +42,27 @@
 					<th>Quantity</th>
 					<th>Action</th>
 				</tr>
-				<tr>
-					<td>101</td>
-					<td>Product 101</td>
-					<td>$150.00</td>
-					<td>50</td>
-					<td><a href="#" class="edit">Edit</a><a href="#" class="delete">Delete</a></td>
-				</tr>
-				<tr>
-					<td>102</td>
-					<td>Product 102</td>
-					<td>$100.00</td>
-					<td>20</td>
-					<td><a href="#" class="edit">Edit</a><a href="#" class="delete">Delete</a></td>
-				</tr>
-			</table>
+				<tbody id="tbody">
+					<tr>
+						<td>101</td>
+						<td>Product 101</td>
+						<td>$150.00</td>
+						<td>50</td>
+						<td><a href="#" class="edit">Edit</a><a href="#" class="delete">Delete</a></td>
+					</tr>
+					<tr>
+						<td>102</td>
+						<td>Product 102</td>
+						<td>$100.00</td>
+						<td>20</td>
+						<td><a href="#" class="edit">Edit</a><a href="#" class="delete">Delete</a></td>
+					</tr>
+				</tbody>
+				
+			</table> -->
 		</div>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>
