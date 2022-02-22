@@ -16,10 +16,15 @@ $(document).ready(function () {
     product.price = price;
     product.qty = qty;
 
+    if(isExists(id)){
+        $('.warning').css("display","block");
+    }
+    else
     products.push(product);
 
-    isExists(id);
-
+    
+    
+    // clear();    
     display();
   });
 
@@ -29,9 +34,10 @@ $(document).ready(function () {
 function isExists(id){
     for(var i=0; i<products.length; i++){
         if(products[i].id == id){
-            
+            return true;
         }
     }
+    return false;
 }
 
 function display() {
