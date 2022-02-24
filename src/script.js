@@ -63,22 +63,19 @@ $(document).ready(function () {
 
     var product = {};
 
-   
+    product.id = id;
     product.name = name;
     product.price = price;
     product.qty = qty;
 
     // console.log(product);
 
-    if (isExists(id)) {
-      $(".warning").css("display", "block");
-      $(".success").css("display", "none");
-    } else updatePTable(product,id);
+    updatePTable(product);
 
     // clear();
-
+    $("#product_sku").prop("disabled", false);
     display();
-
+    clr();
     $("#add_product").css("display", "block");
     $("#update_product").css("display", "none");
   });
@@ -94,12 +91,12 @@ $(document).ready(function () {
 
 
 
-function updatePTable(pproduct,id) {
+function updatePTable(pproduct) {
   console.log(pproduct.id);
-  console.log(id);
+  
   for (var i = 0; i < products.length; i++) {
-    if (id == products[i].id) {
-      console.log(products[i] + " " + pproduct);
+    if (pproduct.id == products[i].id) {
+      // console.log(products[i] + " " + pproduct);
       products[i] = pproduct;
     }
   }
@@ -190,7 +187,7 @@ function pEdit(pid) {
   var product = getProduct(pid);
 
   $("#product_sku").val(product.id);
-  // $("#product_sku").prop("disabled", true);
+  $("#product_sku").prop("disabled", true);
   $("#product_name").val(product.name);
   $("#product_price").val(product.price);
   $("#product_quantity").val(product.qty);
