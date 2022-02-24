@@ -29,6 +29,10 @@ body{
 	padding: 10px;
 }
 
+#update_product{
+	display: none;
+}
+
 #notification > div{
 	padding: 10px;
 	font-weight: bold;
