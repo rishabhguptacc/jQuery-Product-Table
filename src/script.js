@@ -20,7 +20,7 @@ $(document).ready(function () {
       $(".warning").css("display", "block");
     } else products.push(product);
     
-    // clear();   
+   
 
     display();
 
@@ -50,6 +50,36 @@ $(document).ready(function () {
     console.log("delete clicked");
     pDel(id);
   });
+
+
+  $("#update_product").click(function () {
+    console.log("clicked updatebtn");
+
+    var id = $("#product_sku").val();
+    var name = $("#product_name").val();
+    var price = $("#product_price").val();
+    var qty = $("#product_quantity").val();
+
+    var product = {};
+
+    product.id = id;
+    product.name = name;
+    product.price = price;
+    product.qty = qty;
+
+    if (isExists(id)) {
+      $(".warning").css("display", "block");
+    } else products.push(product);
+    
+    // clear();   
+
+    display();
+
+    $("#add_product").css("display","block");
+    $("#update_product").css("display","none");
+  });
+
+
 });
 
 
