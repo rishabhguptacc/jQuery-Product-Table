@@ -53,6 +53,17 @@ body{
 	background: #7ED47E;
 	display: none;
 }
+#notification .update{
+	border: 1px solid green;
+	background: #7ED47E;
+	display: none;
+}
+#notification .Delete{
+	border: 1px solid green;
+	background: #7ED47E;
+	display: none;
+}
+
 
 #notification .error{
 	border: 1px solid red;
@@ -64,6 +75,7 @@ body{
 	border: 1px solid rgb(255, 204, 0);
 	background: #fffa6d;
 	display: none;
+	
 }
 
 #product_list .delete{

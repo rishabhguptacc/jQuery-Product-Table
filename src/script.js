@@ -5,25 +5,30 @@ $(document).ready(function () {
     // console.log("clicked addbtn");
 
     var id = $("#product_sku").val();
-    var name = $("#product_name").val();
+    var nam = $("#product_name").val();
     var price = $("#product_price").val();
     var qty = $("#product_quantity").val();
 
     var product = {};
 
+    inputCheck(id, nam, price, qty);
+
+
     product.id = id;
-    product.name = name;
+    product.nam = nam;
     product.price = price;
     product.qty = qty;
 
     if (isExists(id)) {
-      $(".warning").css("display", "block");
-      $(".success").css("display", "none");            //  to be done later ... use defined functions instead
-    } else products.push(product);
+     Warning();
+    } else {
+      products.push(product);
+      Success();
+    }
 
     display();
     clr();
-    $(".success").css("display", "block");
+    
   });
 
   // 
@@ -33,15 +38,6 @@ $(document).ready(function () {
     console.log($(this).data("pid"));
 
     var pid = $(this).data("pid");
-
-    // ******  Below Lines are equally working fine as we are using it on the Function called pEdit(pid)********
-
-                                        // var product = getProduct(pid);
-
-                                        // $("#product_sku").val(product.id) ;
-                                        // $("#product_name").val(product.name) ;
-                                        // $("#product_price").val(product.price) ;
-                                        // $("#product_quantity").val(product.qty) ;
 
     pEdit(pid);
   });
@@ -61,14 +57,14 @@ $(document).ready(function () {
     console.log("clicked updatebtn");
 
     var id = $("#product_sku").val();
-    var name = $("#product_name").val();
+    var nam = $("#product_name").val();
     var price = $("#product_price").val();
     var qty = $("#product_quantity").val();
 
     var product = {};
 
     product.id = id;
-    product.name = name;
+    product.nam = nam;
     product.price = price;
     product.qty = qty;
 
@@ -81,22 +77,37 @@ $(document).ready(function () {
     clr();
     $("#add_product").css("display", "block");
     $("#update_product").css("display", "none");
+    Update();
   });
 
 
   $('#product_list').on('click','.delete',function(){
-    console.log("delete clicked");
+    // console.log("delete clicked");
     var pid = $(this).data('pid');
 
-    pDel(pid);
+    if (confirm("Are you sure of deleting the Product?")) {
+       pDel(pid);
+    } else {
+      Cross();
+    }
+
+    
 
     display();
   });
 
 
-
+Cross();
 
 });
+
+
+function inputCheck(id, nam, price, qty){
+  if(id=="" && nam=="" && price=="" && qty==""){
+    $('product_sku').css("border-color","red");
+  }
+
+}
 
 
 function pDel(pid){
@@ -110,6 +121,7 @@ function pDel(pid){
       products.splice(i,1);
     }
   }
+  Delete();
 }
 
 
@@ -157,7 +169,7 @@ function display() {
       products[i].id +
       "</td>\
                         <td>" +
-      products[i].name +
+      products[i].nam +
       "</td>\
                         <td>" +
       products[i].price +
@@ -203,7 +215,7 @@ function pEdit(pid) {
 
   $("#product_sku").val(product.id);
   $("#product_sku").prop("disabled", true);
-  $("#product_name").val(product.name);
+  $("#product_name").val(product.nam);
   $("#product_price").val(product.price);
   $("#product_quantity").val(product.qty);
 
@@ -240,19 +252,54 @@ function updatePTable(pproduct) {
 
 function Success(){
   $(".success").css("display", "block");
+  $(".update").css("display", "none");
+  $(".Delete").css("display", "none");
   $(".error").css("display", "none");
   $(".warning").css("display", "none");
 }
 
+function Update(){
+  $(".success").css("display", "none");
+  $(".update").css("display", "block");
+  $(".Delete").css("display", "none");
+  $(".error").css("display", "none");
+  $(".warning").css("display", "none");
+}
+
+function Delete(){
+  $(".success").css("display", "none");
+  $(".update").css("display", "none");
+  $(".Delete").css("display", "block");
+  $(".error").css("display", "none");
+  $(".warning").css("display", "none");
+}
 
 function Error(){
   $(".error").css("display", "block");
+  $(".update").css("display", "none");
+  $(".Delete").css("display", "none");
   $(".success").css("display", "none");
   $(".warning").css("display", "none");
 }
 
-function warning(){
+function Warning(){
   $(".warning").css("display", "block");
+  $(".update").css("display", "none");
+  $(".Delete").css("display", "none");
   $(".error").css("display", "none");
   $(".success").css("display", "none");
 }
+
+function Cross(){
+
+  $('.close').click(function(){
+    // console.log("close'X' clicked")
+    $(".warning").css("display", "none");
+    $(".update").css("display", "none");
+    $(".Delete").css("display", "none");
+    $(".error").css("display", "none");
+    $(".success").css("display", "none");
+  });
+
+}
+
