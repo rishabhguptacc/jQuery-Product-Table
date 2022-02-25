@@ -11,20 +11,28 @@ $(document).ready(function () {
 
     var product = {};
 
-    inputCheck(id, nam, price, qty);
-
+    
 
     product.id = id;
     product.nam = nam;
     product.price = price;
     product.qty = qty;
 
-    if (isExists(id)) {
-     Warning();
-    } else {
-      products.push(product);
-      Success();
+    if(inputCheck(id, nam, price, qty)){
+      if (isExists(id)) {
+      Warning();
+      } 
+      else {
+        products.push(product);
+        Success();
+        $('#product_sku').css("border-color","black");
+        $('#product_name').css("border-color","black");
+        $('#product_price').css("border-color","black");
+        $('#product_quantity').css("border-color","black");
+      }
     }
+
+    
 
     display();
     clr();
@@ -103,29 +111,40 @@ Cross();
 
 
 function inputCheck(id, nam, price, qty){
-  if(id=="" && nam=="" && price=="" && qty==""){
-    $('product_sku').css("border-color","red");
-  }
 
-}
-
-
-function pDel(pid){
- // var product = getProduct(pid);
-
-  for(var i=0; i< products.length ; i++)
-  {
-    if(pid == products[i].id){
-      console.log(pid);
-      console.log(products[i].id);
-      products.splice(i,1);
+  (id=="")?($('#product_sku').css("border-color","red")):($('#product_sku').css("border-color","black"));
+  (nam=="")?($('#product_name').css("border-color","red")):($('#product_name').css("border-color","black"));
+  (price=="")?($('#product_price').css("border-color","red")):($('#product_price').css("border-color","black"));
+  (qty=="")?($('#product_quantity').css("border-color","red")):($('#product_quantity').css("border-color","black"));
+  
+  // if(id==""){
+  //   $('#product_sku').css("border-color","red");
+  //   // return false;
+  // }
+  // if(nam==""){
+  //   $('#product_name').css("border-color","red");
+  //   // return false;
+  // }
+  // if(price==""){
+  //   $('#product_price').css("border-color","red");
+  //   // return false;
+  // }
+  // if(qty==""){
+  //   $('#product_quantity').css("border-color","red");
+  //   // return false;
+  // }
+  if(id=="" || nam=="" ||price=="" || qty==""){
+      // console.log("inside inputCheck()");
+      // $('#product_sku').css("border-color","red");
+      // $('#product_name').css("border-color","red");
+      // $('#product_price').css("border-color","red");
+      // $('#product_quantity').css("border-color","red");
+      Error();
+      return false;
     }
-  }
-  Delete();
+  else return true;
+
 }
-
-
-
 
 
 
@@ -245,6 +264,24 @@ function updatePTable(pproduct) {
     }
   }
 }
+
+
+
+
+function pDel(pid){
+ // var product = getProduct(pid);
+
+  for(var i=0; i< products.length ; i++)
+  {
+    if(pid == products[i].id){
+      console.log(pid);
+      console.log(products[i].id);
+      products.splice(i,1);
+    }
+  }
+  Delete();
+}
+
 
 
 
